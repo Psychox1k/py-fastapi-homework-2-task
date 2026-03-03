@@ -18,7 +18,7 @@ router = APIRouter()
 
 
 # Write your code here
-@router.get("/movies/", response_model=schemas.MovieListResponseSchema)
+@router.get("/movies/", response_model=schemas.MovieListSchema)
 async def read_movies(
         db: Annotated[AsyncSession, Depends(get_db)],
         page: int = Query(default=1, ge=1),
