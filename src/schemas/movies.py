@@ -83,7 +83,7 @@ class MovieUpdateSchema(BaseModel):
         return date_v
 
 
-class MovieDetailResponseSchema(MovieBase):
+class MovieDetailSchema(MovieBase):
     id: int
 
     country: Country

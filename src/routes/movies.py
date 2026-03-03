@@ -5,7 +5,7 @@ from sqlalchemy import select, func
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
-from sqlalchemy.sql.annotation import Annotated
+from typing import Annotated
 from starlette import status
 
 import crud
@@ -45,7 +45,7 @@ async def read_movies(
     }
 
 
-@router.get("/movies/{movie_id}/", response_model=schemas.MovieDetailResponseSchema)
+@router.get("/movies/{movie_id}/", response_model=schemas.MovieDetailSchema)
 async def get_movie(
         db: Annotated[AsyncSession, Depends(get_db)],
         movie_id: int
@@ -60,7 +60,7 @@ async def get_movie(
 
 @router.post(
     "/movies/",
-    response_model=schemas.MovieDetailResponseSchema,
+    response_model=schemas.MovieDetailSchema,
     status_code=status.HTTP_201_CREATED
 )
 async def create_movie(
@@ -100,7 +100,7 @@ async def update_movie(
     return {"detail": "Movie updated successfully."}
 
 
-@router.delete("/movies/{movie_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/movies/{movie_id}/", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_movie(
         db: Annotated[AsyncSession, Depends(get_db)],
         movie_id: int
