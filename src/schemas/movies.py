@@ -48,8 +48,11 @@ class MovieBase(BaseModel):
     def validate_date(cls, date_v: datetime.date):
         max_date = datetime.date.today() + datetime.timedelta(days=365)
         if date_v > max_date:
-            raise ValueError("Date cannot be more than one year in the future")
+            raise ValueError(
+                "Date cannot be more than one year in the future"
+            )
         return date_v
+
 
 class MovieCreateSchema(MovieBase):
     country: str
@@ -74,7 +77,9 @@ class MovieUpdateSchema(BaseModel):
             return date_v
         max_date = datetime.date.today() + datetime.timedelta(days=365)
         if date_v > max_date:
-            raise ValueError("Date cannot be more than one year in the future")
+            raise ValueError(
+                "Date cannot be more than one year in the future"
+            )
         return date_v
 
 
