@@ -18,7 +18,7 @@ router = APIRouter()
 
 
 # Write your code here
-@router.get("/movies/", response_model=schemas.MovieListSchema)
+@router.get("/movies/", response_model=schemas.MovieListResponseSchema)
 async def read_movies(
         db: Annotated[AsyncSession, Depends(get_db)],
         page: int = Query(default=1, ge=1),
@@ -45,7 +45,7 @@ async def read_movies(
     }
 
 
-@router.get("/movies/{movie_id}/", response_model=schemas.MovieDetailSchema)
+@router.get("/movies/{movie_id}/", response_model=schemas.MovieDetailResponseSchema)
 async def get_movie(
         db: Annotated[AsyncSession, Depends(get_db)],
         movie_id: int
@@ -60,7 +60,7 @@ async def get_movie(
 
 @router.post(
     "/movies/",
-    response_model=schemas.MovieDetailSchema,
+    response_model=schemas.MovieDetailResponseSchema,
     status_code=status.HTTP_201_CREATED
 )
 async def create_movie(

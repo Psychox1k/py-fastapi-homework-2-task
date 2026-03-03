@@ -83,7 +83,7 @@ class MovieUpdateSchema(BaseModel):
         return date_v
 
 
-class MovieDetailSchema(MovieBase):
+class MovieDetailResponseSchema(MovieBase):
     id: int
 
     country: Country
@@ -94,7 +94,7 @@ class MovieDetailSchema(MovieBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-class MovieListSchema(BaseModel):
+class MovieListResponseSchema(BaseModel):
     movies: list[Movie]
     prev_page: str | None
     next_page: str | None
